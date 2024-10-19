@@ -1,0 +1,34 @@
+---
+title: "Análisis del Play-Delay en Netflix"
+author: "Luz Alba Posse & Martina Monastra"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## 1. Datos Históricos
+
+### 1.1 Histograma
+
+Para evaluar los datos históricos, se calcula la media y la varianza del "play-delay" y se grafica un histograma para verificar la forma de la distribución.
+
+```{r cargar-datos, echo=TRUE}
+
+historical_data <- read.csv("datos_historicos.csv")
+
+mean_historical <- mean(historical_data$play.delay)
+variance_historical <- var(historical_data$play.delay)
+
+mean_historical
+variance_historical
+
+hist(historical_data$play.delay, 
+     breaks = 30, 
+     main = "Play-Delay Histórico", 
+     xlab = "Play-Delay", 
+     col = "blue", 
+     border = "black")
+
+abline(v = mean_historical, col = "red", lwd = 2, lty = 2)
+```
+
+Como bien vemos en el gráfico, los datos parecen distribuirse de forma normal, con una media de 42.17103 y una varianza de 54.30905. 
